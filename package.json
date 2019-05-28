@@ -1,0 +1,15 @@
+{
+  "name": "medicalconference",
+  "version": "1.0.0",
+  "description": "medical conference",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Balkrushna",
+  "license": "ISC",
+  "dependencies": {
+    "x-ray": "^2.3.3"
+  },
+  "devDependencies": {}
+}
