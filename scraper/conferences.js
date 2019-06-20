@@ -19,9 +19,9 @@ x('https://www.emedevents.com/india-medical-conferences', '.sec_conf_main', [{
         desc: '.conf_head_summary | trim'
     })
 }])
-    // .write('result.json')
-    ((er, res) => {
-        // result = res
-        console.log(res)
-    })
+    .write('result.json')
+    // ((er, res) => {
+    //     // result = res
+    //     console.log(res)
+    // })
 
