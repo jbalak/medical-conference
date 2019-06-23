@@ -28,7 +28,7 @@ module.exports = async (email) => {
             console.log(err.message)
         }
         else {
-            console.log('Email sent', res)
+            console.log('Email sent')
         }
     })
 
