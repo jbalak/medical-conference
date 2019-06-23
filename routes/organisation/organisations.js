@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const validateObjectId = require('../../utils/validateObjectId')
 const passwordHash = require('../../utils/bcrypt')
 const userVerify = require('../../utils/emailVerify')
 const Organization = require('../../models/organisation')
 const Conference = require('../../models/conference')
-
+const _ = require('lodash')
 router.post('/signup', async (req, res) => {
   let { organizationName, email, password, address, phone } = req.body
 
@@ -17,7 +18,6 @@ router.post('/signup', async (req, res) => {
     return res.status(400).send('This organization is already registered')
   }
 
-  console.log(">>>>>>>", organization)
   password = await passwordHash(password)
   await new Organization({
     organizationName, email, password, address, phone, userType: 'organization'
@@ -33,8 +33,18 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/profile/:id', async (req, res) => {
+
+  if (!validateObjectId(req.params.id)) {
+    return res.status(400).send('Invalid organisation')
+  }
+
   let organisation = await Organization.findById(req.params.id)
-  res.send(organisation)
+  let newOrg = _.pick(organisation, ['organizationName', 'email', 'address', 'phone'])
+
+  if (!newOrg) {
+    return res.status(400).send('no organisation found')
+  }
+  res.send(newOrg)
 })
 
 
@@ -51,6 +61,10 @@ router.post('/upload', async (req, res) => {
     return res.status(400).send('some fields are missing')
   }
 
+
+  //update organization schema appliedConference model
+
+
   let userType = 'organization'
   let email = "dailydoc@gmail.com"
   let organization = await Organization.findOne({ email })
@@ -63,18 +77,20 @@ router.post('/upload', async (req, res) => {
     title, location
   }, {
       title, description, location, userType
-    }, { upsert: true }).then(resp => {
+    }, { upsert: true }).then(async resp => {
       if (resp) {
+        console.log(resp)
+        Organization.updateOne({ title: resp.title }, { $push: { appliedConferences: resp._id } })
         return res.status(400).send('This conference is already added')
-      }
 
+      }
+      // if (resp == null) {
       return res.send('Conference added successfully')
+      // }
     })
 
+
+
 })
-
-
-
-
 
 module.exports = router

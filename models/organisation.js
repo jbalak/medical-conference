@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+// let ObjectId = mongoose.Types.ObjectId
 const { Schema } = mongoose
 const AddressSchema = require('./schemas/address')
 const OrganisationSchema = new Schema({
@@ -8,7 +9,7 @@ const OrganisationSchema = new Schema({
   address: String,
   organizationName: { type: String, unique: true },
   address: AddressSchema,
-
+  appliedConferences: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Conference' }],
   companyDescription: {
     type: String
   },
