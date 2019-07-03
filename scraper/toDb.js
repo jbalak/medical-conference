@@ -9,7 +9,6 @@ result.map(async res => {
     await Conferences.create({
         title: res.title,
         date: res.date,
-        description: res.desc.desc.replace(/\n/g, '').replace(/ /g, '')
+        description: res.desc.desc.replace(/\n/g, ' ').replace(/\n/g, ' ').replace(/ /g, ' ')
     }, () => { })
-    Conferences.index()
 })

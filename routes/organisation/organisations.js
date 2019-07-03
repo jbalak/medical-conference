@@ -69,6 +69,9 @@ router.post('/upload', async (req, res) => {
   let email = "dailydoc@gmail.com"
   let organization = await Organization.findOne({ email })
 
+  if (!organization) {
+    return res.status(400).send('No such organization found')
+  }
   if (organization.userType != userType) {
     return res.status(401).send('You are not allowed to this route')
   }
