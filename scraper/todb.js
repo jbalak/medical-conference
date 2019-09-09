@@ -2,7 +2,6 @@ require('../config/db')()
 const Organization = require('../models/organisation')
 const Conference = require('../models/conference')
 const conf = require('./confAlert/json/confAlert2.json')
-console.log(conf.length)
 let i = 0
 conf.map((c) => {
 	// console.log(c.desc.startingDate)

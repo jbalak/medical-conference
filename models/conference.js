@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 const AddressSchema = require('./schemas/address')
+const Coordinates = require('./schemas/coordinates')
 const { Schema } = mongoose
 const TimeSchema = require('./schemas/time')
 const ConferenceSchema = new Schema({
 	title: { type: String, text: true },
 	location: AddressSchema,
+	cords: Coordinates,
 	date: TimeSchema,
 	apply_link: String,
 	website: String,
