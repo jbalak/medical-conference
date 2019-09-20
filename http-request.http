@@ -1,9 +1,42 @@
 POST http://localhost:9000/api/conference/organization/upload
 Content-Type: application/json
+
 {
-    title:'Conference 1',
-    
+    "title":"Medical Conference",
+    "location":"Pune MH India",
+    "date":"2019-10-06",
+    "website":"Servetree.com"
 }
 
 ###
-GET http://localhost:9000/api/conference/search/Conference/usa
+POST  http://localhost:9000/api/conference/organization/signup
+Content-Type: application/json
+
+{
+    "organizationName":"ServeTech Inc", 
+    "email":"hdtv7180@gmail.com", 
+    "password":"password", 
+    "address":{
+        "city":"Pune",
+	    "country":"India",
+	    "state":"MH",
+	    "streetAddress":"Pune Road",
+	    "locality":"Loality",
+	    "postalCode":"411" 
+    },
+    "phone":12345
+}
+###
+
+GET   http://localhost:9000/api/conference/organization/profile/5d81263c5429852e36eb5d89
+
+
+
+
+###
+PUT  http://localhost:9000/api/conference/organization/update/5d81263c5429852e36eb5d89
+Content-Type: application/json
+
+{
+    "website":"servetree.inc"
+}

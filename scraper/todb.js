@@ -1,5 +1,5 @@
 require('../config/db')()
-const Organization = require('../models/organisation')
+const Organization = require('../models/organization')
 const Conference = require('../models/conference')
 const conf = require('./confAlert/json/confAlert2.json')
 let i = 0
