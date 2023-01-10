@@ -25,7 +25,7 @@
     "passport-strategy": "^1.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "x-ray": "^2.3.3"
+    "x-ray": "^2.3.4"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
